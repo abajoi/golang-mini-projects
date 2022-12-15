@@ -1,29 +1,29 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
-	"time"
 )
 
 func main() {
+	num := []int(nil)
+	fn(num)
+}
 
-	// // 2022-12-09T14:22:00+00:00
-	deadline := flag.String("deadline", "", "The deadline for the countdown timer in RFC3339 format (e.g. 2019-12-25T15:00:00+01:00)")
-	// flag.Parse()
-
-	v, err := time.Parse(time.RFC3339, *deadline)
-	if err != nil && v.Day() != 10 {
-		if v.Day() != 10 {
-			fmt.Println(err.Error())
-			os.Exit(1)
-		} else {
-			fmt.Println("HEY")
-		}
-
+func Log(msg string, level int) {
+	fmt.Println(msg)
+	if level == 10 {
+		os.Exit(1)
 	}
-	fmt.Println(v)
-	
-	os.close()
+}
+
+func Fatal(msg string) {
+	Log(msg, 10)
+}
+
+func fn(x []int) {
+	if x == nil {
+		Fatal("unexpected nil pointer")
+	}
+	fmt.Println(x)
 }
