@@ -2,28 +2,20 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"strings"
 )
 
 func main() {
-	num := []int(nil)
-	fn(num)
+	num := ""
+	list := strings.Split(num, ",")
+
+	getData(list)
+
+	// fn(num)
 }
 
-func Log(msg string, level int) {
-	fmt.Println(msg)
-	if level == 10 {
-		os.Exit(1)
+func getData(list []string) {
+	for i := 0; i < len(list)+1; i++ {
+		fmt.Println(list[i])
 	}
-}
-
-func Fatal(msg string) {
-	Log(msg, 10)
-}
-
-func fn(x []int) {
-	if x == nil {
-		Fatal("unexpected nil pointer")
-	}
-	fmt.Println(x)
 }
